@@ -1,0 +1,9 @@
+.header{
+    @apply bg-primary-soft-red text-cream mx-4 mt-16 rounded-xl flex justify-between  items-center px-4 py-6; 
+}
+.balance{
+    @apply font-semibold text-xl;
+}
+.logo{
+    @apply h-10;
+}

@@ -1,8 +1,13 @@
+import LogoSVG from '../../assets/img/logo.svg?react';
+import estilos from './Header.module.css';
 function Header() {
     return ( 
-        <header>
-            <small>My balance</small>
-            <p>921.48</p>
+        <header className={estilos.header}>
+            <div>
+                <small>My balance</small>
+                <p className={estilos.balance}>$921.48</p>
+            </div>
+            <LogoSVG className={estilos.logo}/>
         </header>
      );
 }
