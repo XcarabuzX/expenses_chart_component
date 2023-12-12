@@ -9,7 +9,6 @@ function Header() {
             </div>
             <LogoSVG className={estilos.logo}/>
         </header>
-     );
+)
 }
-
 export default Header;
