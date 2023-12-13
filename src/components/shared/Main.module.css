@@ -1,0 +1,18 @@
+.main{
+    @apply bg-white mx-4 mt-4 rounded-lg py-6 px-4;
+}
+.titulo{
+    @apply text-dark-brown font-semibold text-2xl;
+}
+.contenedorBajo{
+    @apply flex justify-between mt-4;
+}
+.small{
+    @apply text-medium-brown font-medium;
+}
+.total{
+    @apply text-dark-brown text-2xl font-bold;
+}
+.contenedorSegundo{
+    @apply flex flex-col items-end justify-end leading-tight;
+}
