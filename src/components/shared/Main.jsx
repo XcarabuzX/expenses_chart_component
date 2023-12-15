@@ -111,7 +111,7 @@ function Main() {
           <p className={estilos.total}>$478.33</p>
         </div>
         <div className={estilos.contenedorSegundo}>
-          <p>+2.4%</p>
+          <p className="font-bold">+2.4%</p>
           <small className={estilos.small}>from last month</small>
         </div>
       </div>
