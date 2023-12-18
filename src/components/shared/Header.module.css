@@ -1,5 +1,5 @@
 .header{
-    @apply bg-primary-soft-red text-cream mx-4 mt-16 rounded-xl flex justify-between  items-center px-4 py-6; 
+    @apply bg-primary-soft-red text-cream mx-4 mt-16 rounded-xl flex justify-between  items-center px-4 py-6 md:mt-0; 
 }
 .balance{
     @apply font-semibold text-xl;
