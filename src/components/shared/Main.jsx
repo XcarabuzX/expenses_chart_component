@@ -4,17 +4,19 @@ import { useEffect } from "react";
 import Chart from "chart.js/auto";
 
 function Main() {
-  const [data, setData] = useState({ labels: [], values: [] });
+  const [data, setData] = useState([]);
 
   const fetchData = async () => {
     try {
       const response = await fetch("/data.json");
       const jsonData = await response.json();
 
-      const labels = jsonData.map((item) => item.day);
-      const values = jsonData.map((item) => item.amount);
+      const data = jsonData.map((item) => ({
+        day: item.day,
+        amount: item.amount,
+      }));
 
-      setData({ labels, values });
+      setData(data);
     } catch (error) {
       console.error("Error fetching data:", error);
     }
@@ -33,22 +35,24 @@ function Main() {
         existingChart.destroy();
       }
 
-      const highestValueIndex = data.values.indexOf(Math.max(...data.values));
+      const highestValueIndex = data.findIndex(
+        (item) => item.amount === Math.max(...data.map((item) => item.amount))
+      );
 
       new Chart(ctx, {
         type: "bar",
         data: {
-          labels: data.labels,
+          labels: data.map((item) => item.day),
           datasets: [
             {
               label: "Amount",
-              data: data.values,
-              backgroundColor: data.values.map((value,index) =>
+              data: data.map((item) => item.amount),
+              backgroundColor: data.map((item, index) =>
                 index === highestValueIndex
                   ? "hsl(186, 34%, 60%)"
                   : "hsl(10, 79%, 65%)"
               ),
-              borderColor: data.values.map((value,index) =>
+              borderColor: data.map((item, index) =>
                 index === highestValueIndex
                   ? "hsl(186, 34%, 60%)"
                   : "hsl(10, 79%, 65%)"
@@ -77,6 +81,18 @@ function Main() {
             legend: {
               display: false,
             },
+            tooltip: {
+              callbacks: {
+                label: function (context) {
+                  const value = context.parsed.y;
+                  return `$${value}`;
+                },
+                title: function(){
+                  return "";
+                },
+              },
+              displayColors: false,
+            },
           },
           elements: {
             bar: {
@@ -104,7 +120,7 @@ function Main() {
       <div>
         <canvas id="myChart" width={400} height={300}></canvas>
       </div>
-      <hr />
+      <hr className="h-0.5 bg-cream border-0"/>
       <div className={estilos.contenedorBajo}>
         <div>
           <small className={estilos.small}>Total this month</small>
